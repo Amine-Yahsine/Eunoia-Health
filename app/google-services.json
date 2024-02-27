@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "909344028561",
+    "project_id": "eunoia-health",
+    "storage_bucket": "eunoia-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909344028561:android:0c19ee0d794b8056f24c30",
+        "android_client_info": {
+          "package_name": "com.example.eunoiahealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYkHkbCGg78N6kzVK2EdstzKebqwRGgbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
