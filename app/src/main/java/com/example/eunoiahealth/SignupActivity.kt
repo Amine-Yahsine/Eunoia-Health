@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupActivity : AppCompatActivity() {
-    private lateinit var button_reg : Button
+    private lateinit var buttonReg : MaterialButton
     private lateinit var emailText : TextInputEditText
     private lateinit var passwordText : TextInputEditText
     private lateinit var auth: FirebaseAuth
@@ -18,12 +19,12 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        button_reg = findViewById(R.id.btn_register)
+        buttonReg = findViewById(R.id.btn_register)
         emailText = findViewById(R.id.email)
         passwordText = findViewById(R.id.password)
         auth = FirebaseAuth.getInstance()
 
-        button_reg.setOnClickListener{
+        buttonReg.setOnClickListener{
             val mail = emailText.text.toString().trim()
             val pass = passwordText.text.toString().trim()
 
@@ -44,7 +45,7 @@ class SignupActivity : AppCompatActivity() {
                             "Account created successfully!",
                             Toast.LENGTH_SHORT,
                         ).show()
-                        val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+                        val intent = Intent(this@SignupActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()

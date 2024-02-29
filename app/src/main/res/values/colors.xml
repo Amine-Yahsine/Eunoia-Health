@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="peach">#EEA5A6</color>
+    <color name="salmon">#E493B3</color>
+    <color name="fuschia">#B784B7</color>
+    <color name="purpler">#8E7AB5</color>
+    <color name="eunoia_orange">#FEBF63</color>
+    <color name="teal">#37B5B6</color>
 </resources>
