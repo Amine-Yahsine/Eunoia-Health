@@ -3,7 +3,8 @@
     <string name="create_account">Click here to create an account!</string>
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
-    <string name="welcome_msg">Welcome to Eunoia Health! Please login below!</string>
+    <string name="login_msg">Welcome to Eunoia Health! Please login below!</string>
+    <string name="signup_msg">Welcome to Eunoia Health! Please sign-up below!</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="logout">LOG OUT</string>

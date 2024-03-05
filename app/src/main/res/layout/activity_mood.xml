@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150dp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How's your mood today?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageButton
+        android:id="@+id/btnMoodHappy"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_happy"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:contentDescription="Happy"/>
+
+    <ImageButton
+        android:id="@+id/btnMoodNeutral"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_neutral"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:contentDescription="Neutral"/>
+
+    <ImageButton
+        android:id="@+id/btnMoodSad"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_sad"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:contentDescription="Happy"/>
+
+
+    <!-- Repeat for other moods with respective IDs and drawable resources -->
+
+</LinearLayout>

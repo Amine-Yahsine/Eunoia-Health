@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     //Database stuff
     private val db = FirebaseFirestore.getInstance()
     private val userId = FirebaseAuth.getInstance().currentUser?.uid
-    private val dateFormat = SimpleDateFormat("YYYYMMDD", Locale.getDefault())
+    private val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
     private val todayDate = dateFormat.format(Date())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +50,29 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             startActivity(intent)
             finish()
         }
+
+        val recordMoodButton: MaterialButton = findViewById(R.id.recordMoodButton)
+        recordMoodButton.setOnClickListener {
+            val intent = Intent(this, MoodActivity::class.java)
+            startActivity(intent)
+        }
     }
     //Look here first if anything goes wrong
     private fun loadStepsFromDB(){
-        userId?.let {uid ->
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            val todayDate = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
             db.collection("users").document(uid)
                 .collection("dailySteps").document(todayDate)
                 .get()
                 .addOnSuccessListener { document ->
                     if(document.exists()) {
-                        val steps = document.getLong("steps")?:0
+                        val steps = document.getLong("steps") ?: 0
                         previousTotalSteps = steps.toFloat()
-                        dailySteps.text = "Daily Steps: $steps"
+                    } else {
+                        previousTotalSteps = totalSteps // Initialize if no entry for today
                     }
+                    updateUI() // Ensure UI is updated regardless
                 }
         }
     }
@@ -92,13 +103,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // and here
     private fun saveSteps(){
         val currentSteps = totalSteps - previousTotalSteps
-        userId?.let {uid ->
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            val todayDate = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
             db.collection("users").document(uid)
                 .collection("dailySteps").document(todayDate)
-                .set(mapOf("steps" to currentSteps.toInt()))
+                .set(mapOf("steps" to currentSteps.toInt(), "timestamp" to FieldValue.serverTimestamp()))
         }
     }
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         //Not handling changes in accuracy
     }
+
 }
