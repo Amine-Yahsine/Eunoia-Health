@@ -1,4 +1,4 @@
-package com.example.eunoiahealth.ui.theme
+package com.example.eunoiahealth
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

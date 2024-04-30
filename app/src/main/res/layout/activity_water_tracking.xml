@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WaterTrackingActivity">
+    android:padding="50dp"
+    android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvWaterIntakeTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Intake: 0 ml"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAdd100ml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+100 ml"
+        android:layout_below="@id/tvWaterIntakeTotal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAdd250ml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+250 ml"
+        android:layout_below="@id/btnAdd100ml"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAdd500ml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+500 ml"
+        android:layout_below="@id/btnAdd250ml"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBackToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/btnAdd500ml"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+</RelativeLayout>

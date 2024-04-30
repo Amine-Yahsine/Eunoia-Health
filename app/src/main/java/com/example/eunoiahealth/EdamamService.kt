@@ -1,3 +1,6 @@
+package com.example.eunoiahealth
+
+import FoodResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

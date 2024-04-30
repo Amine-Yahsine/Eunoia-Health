@@ -1,14 +1,25 @@
-package com.example.eunoiahealth.ui.theme
-
 data class FoodResponse(
-    val calories: Int, // Ensure these fields match the structure of the JSON response
+    val text: String,
+    val parsed: List<ParsedItem>
+)
+
+data class ParsedItem(
+    val food: Food
+)
+
+data class Food(
+    val foodId: String,
     val label: String,
-    val nutrients: Nutrients
+    val nutrients: Nutrients,
+    val category: String,
+    val categoryLabel: String,
+    val image: String?
 )
 
 data class Nutrients(
-    val fat: Double,
-    val protein: Double,
-    val carbs: Double
+    val ENERC_KCAL: Double,
+    val PROCNT: Double,
+    val FAT: Double,
+    val CHOCDF: Double,
+    val FIBTG: Double
 )
-

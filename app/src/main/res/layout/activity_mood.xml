@@ -48,9 +48,6 @@
         android:background="?android:selectableItemBackground"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:contentDescription="Happy"/>
-
-
-    <!-- Repeat for other moods with respective IDs and drawable resources -->
+        android:contentDescription="Sad"/>
 
 </LinearLayout>

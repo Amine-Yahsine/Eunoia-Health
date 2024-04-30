@@ -7,12 +7,17 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.*
@@ -40,6 +45,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         loadStepsFromDB()
+        loadUserProfile()
 
         logoutButton = findViewById(R.id.logout_button)
 
@@ -55,6 +61,55 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         recordMoodButton.setOnClickListener {
             val intent = Intent(this, MoodActivity::class.java)
             startActivity(intent)
+        }
+        findViewById<MaterialButton>(R.id.viewGraphsButton).setOnClickListener {
+            val intent = Intent(this, GraphsActivity::class.java)
+            startActivity(intent)
+        }
+        val profileImage: ImageView = findViewById(R.id.profile_image)
+        profileImage.setOnClickListener {
+            val intent = Intent(this, ProfileCustomizationActivity::class.java)
+            startActivity(intent)
+        }
+        val sleepTrackingButton: MaterialButton = findViewById(R.id.sleepTrackingButton)
+        sleepTrackingButton.setOnClickListener {
+            val intent = Intent(this, SleepActivity::class.java)
+            startActivity(intent)
+        }
+        val foodTrackingButton: Button = findViewById(R.id.foodTrackingButton)
+        foodTrackingButton.setOnClickListener {
+            val intent = Intent(this, FoodActivity::class.java)
+            startActivity(intent)
+        }
+        val waterTrackingButton: Button = findViewById(R.id.btnWaterTracking)
+        waterTrackingButton.setOnClickListener {
+            val intent = Intent(this, WaterTrackingActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun loadUserProfile() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            FirebaseFirestore.getInstance().collection("users").document(userId)
+                .get(Source.SERVER)
+                .addOnSuccessListener { documentSnapshot ->
+                    val imageUrl = documentSnapshot.getString("photoUrl")
+                    val imageView: ImageView = findViewById(R.id.profile_image)
+                    if (!imageUrl.isNullOrEmpty()) {
+                        Glide.with(this)
+                            .load(imageUrl)
+                            .skipMemoryCache(true) // Skip memory cache
+                            .diskCacheStrategy(DiskCacheStrategy.NONE) // Skip disk cache
+                            .into(imageView)
+                    }
+                    val username = documentSnapshot.getString("username") ?: "Anonymous"
+                    val usernameTextView: TextView = findViewById(R.id.usernameTextView)
+                    usernameTextView.text = username
+                }
+                .addOnFailureListener { e ->
+
+                }
         }
     }
     //Look here first if anything goes wrong
@@ -81,6 +136,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         stepSensor?.also { sensor ->
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI)
         }
+        loadUserProfile()
     }
     override fun onPause() {
         super.onPause()
