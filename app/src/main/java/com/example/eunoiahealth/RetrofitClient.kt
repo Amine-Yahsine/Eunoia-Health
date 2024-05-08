@@ -3,7 +3,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://api.edamam.com/" // Change this to your API's base URL
+    private const val BASE_URL = "https://api.edamam.com/"
 
     val instance: EdamamService by lazy {
         val retrofit = Retrofit.Builder()

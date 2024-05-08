@@ -11,5 +11,5 @@ interface EdamamService {
         @Query("ingr") foodName: String,
         @Query("app_id") appId: String,
         @Query("app_key") apiKey: String
-    ): Call<FoodResponse>  // Replace FoodResponse with your data model class
+    ): Call<FoodResponse>
 }

@@ -81,7 +81,7 @@ class GraphsActivity : AppCompatActivity() {
             try {
                 val document = firestore.collection("users").document(userId)
                     .collection("Moods").document(date).get().await()
-                val mood = document.getLong("mood")?.toFloat() ?: 2f // Using '2' as a placeholder for neutral mood.
+                val mood = document.getLong("mood")?.toFloat() ?: 2f
                 entries.add(BarEntry(index.toFloat(), mood))
             } catch (e: Exception) {
                 showError("Failed to fetch mood data for $date")

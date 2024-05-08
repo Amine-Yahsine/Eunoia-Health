@@ -61,7 +61,7 @@ class ProfileCustomizationActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             imageUri = data?.data
-            profileImageView.setImageURI(imageUri) // Preview selected image
+            profileImageView.setImageURI(imageUri)
         }
     }
 

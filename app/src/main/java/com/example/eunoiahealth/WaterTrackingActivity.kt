@@ -27,7 +27,7 @@ class WaterTrackingActivity : AppCompatActivity() {
 
         val backToMainButton: Button = findViewById(R.id.btnBackToMain)
         backToMainButton.setOnClickListener {
-            finish()  // This will close the current activity and return to MainActivity
+            finish()
         }
 
     }

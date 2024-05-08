@@ -99,8 +99,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                     if (!imageUrl.isNullOrEmpty()) {
                         Glide.with(this)
                             .load(imageUrl)
-                            .skipMemoryCache(true) // Skip memory cache
-                            .diskCacheStrategy(DiskCacheStrategy.NONE) // Skip disk cache
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .into(imageView)
                     }
                     val username = documentSnapshot.getString("username") ?: "Anonymous"
@@ -125,9 +125,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                         val steps = document.getLong("steps") ?: 0
                         previousTotalSteps = steps.toFloat()
                     } else {
-                        previousTotalSteps = totalSteps // Initialize if no entry for today
+                        previousTotalSteps = totalSteps
                     }
-                    updateUI() // Ensure UI is updated regardless
+                    updateUI()
                 }
         }
     }
